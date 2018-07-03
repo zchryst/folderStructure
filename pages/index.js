@@ -27,12 +27,26 @@ class Index extends React.Component {
     }
   }
 
+  static countFiles(array, count = 0) {
+    array.forEach((node) => {
+      if (node.type === "file") {
+        count += 1;
+      } else if (node.type === "folder") {
+        count += this.countFiles(node.children);
+      }
+    });
+
+    return count;
+  }
+
 
   render() {
     const { data } = this.props;
 
     const jsxStructure = [];
     data.forEach((node) => jsxStructure.push(Index.buildStructure(node)));
+
+    const fileCount = Index.countFiles(data);
 
     console.log(data);
 
@@ -42,11 +56,15 @@ class Index extends React.Component {
 
         <File name="cute file" />
 
-        <Folder name="big scary folder"/>
+        <Folder name="empty folder"/>
 
         <Folder name="father folder" children={<div>waaaahhhh!</div>}/>
 
         {jsxStructure}
+
+        <div>
+          File count: {fileCount}
+        </div>
       </div>
     )
   }
