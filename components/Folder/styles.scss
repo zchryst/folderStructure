@@ -1,0 +1,29 @@
+.row {
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  padding-left: .5rem;
+}
+
+.children {
+  padding-left: 2rem;
+}
+
+.icon {
+  width: 2rem;
+}
+
+.chevron {
+  width: 1rem;
+  margin-right: .5rem;
+}
+
+.chevronClosed {
+  composes: chevron;
+
+  position: relative;
+  transform: rotate(-90deg);
+}

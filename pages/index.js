@@ -2,8 +2,10 @@ import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import PropTypes from 'prop-types';
 
-import File from '../components/File';
-import Folder from '../components/Folder';
+import File from '../components/File/File';
+import Folder from '../components/Folder/Folder';
+
+import styles from './styles/index.scss';
 
 class Index extends React.Component {
 
@@ -51,19 +53,13 @@ class Index extends React.Component {
     console.log(data);
 
     return (
-      <div>
-        <p>Hello World</p>
-
-        <File name="cute file" />
-
-        <Folder name="empty folder"/>
-
-        <Folder name="father folder" children={<div>waaaahhhh!</div>}/>
-
+      <div className={styles.indexPage}>
         {jsxStructure}
 
-        <div>
-          File count: {fileCount}
+        <div className={styles.count}>
+          <h4>
+            File count: {fileCount}
+          </h4>
         </div>
       </div>
     )
