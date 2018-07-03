@@ -6,9 +6,9 @@ const File = (props) => {
 
   return(
     <div>
-      <p>
+      <div>
         file: {name}
-      </p>
+      </div>
     </div>
   )
 };

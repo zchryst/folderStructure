@@ -17,9 +17,22 @@ class Index extends React.Component {
     return data;
   };
 
+  static buildStructure(node) {
+    if (node.type === "file") {
+      return <File name={node.name} />
+    } else if (node.type === "folder") {
+      const subFiles = [];
+      node.children.forEach((subNode) => subFiles.push(this.buildStructure(subNode)));
+      return <Folder name={node.name} children={subFiles} />
+    }
+  }
+
 
   render() {
     const { data } = this.props;
+
+    const jsxStructure = [];
+    data.forEach((node) => jsxStructure.push(Index.buildStructure(node)));
 
     console.log(data);
 
@@ -32,13 +45,15 @@ class Index extends React.Component {
         <Folder name="big scary folder"/>
 
         <Folder name="father folder" children={<div>waaaahhhh!</div>}/>
+
+        {jsxStructure}
       </div>
     )
   }
 }
 
 Index.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
 };
 
 export default Index;
