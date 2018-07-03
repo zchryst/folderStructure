@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from '../styles/components/folder.scss'
+
 class Folder extends React.Component {
 
 
@@ -9,13 +11,13 @@ class Folder extends React.Component {
     const { name, children = null } = this.props;
 
     return (
-      <div>
+      <div className={styles.mainContainer}>
         <div>
           folder: {name}
         </div>
 
         {children && (
-          <div>
+          <div className={styles.children}>
             {children}
           </div>
         )}
